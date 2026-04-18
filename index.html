@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himanshu Joshi | DevOps Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@600;700&display=swap');
+
+        :root {
+            --bg-0: #fafbfc;
+            --bg-1: #f3f6f9;
+            --surface: rgba(255, 255, 255, 0.95);
+            --line: rgba(106, 156, 206, 0.15);
+            --text: #1a3a52;
+            --muted: #5a7a94;
+            --brand: #2563eb;
+            --brand-2: #3b82f6;
+            --accent: #f97316;
+            --shadow: 0 16px 45px rgba(37, 99, 235, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text);
+            line-height: 1.75;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background:
+                radial-gradient(1200px 600px at 10% -10%, rgba(59, 130, 246, 0.12), transparent 60%),
+                radial-gradient(1000px 500px at 100% 20%, rgba(249, 115, 22, 0.14), transparent 65%),
+                linear-gradient(135deg, var(--bg-0) 0%, var(--bg-1) 100%);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+            background-size: 38px 38px;
+            mask-image: radial-gradient(circle at center, black 25%, transparent 100%);
+            opacity: 0.35;
+        }
+
+        header {
+            text-align: center;
+            padding: 96px 20px 72px;
+            color: #1a3a52;
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.3rem, 6vw, 4rem);
+            letter-spacing: 0.03em;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
+        }
+
+        header p {
+            font-size: clamp(1rem, 2.3vw, 1.3rem);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #3b82f6;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cv-download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 14px 8px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.92rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+            box-shadow: 0 12px 28px rgba(249, 115, 22, 0.2);
+        }
+
+        .cv-download-btn:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #ea580c 0%, #d97706 100%);
+            box-shadow: 0 16px 36px rgba(249, 115, 22, 0.35);
+        }
+
+        .cv-download-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .cv-link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 14px 8px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.92rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.2);
+        }
+
+        .cv-link-btn:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+            box-shadow: 0 16px 36px rgba(37, 99, 235, 0.35);
+        }
+
+        .cv-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cv-link-input {
+            display: inline-block;
+            margin-top: 16px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .cv-link-input input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(37, 99, 235, 0.3);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: 'Manrope', sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cv-link-input input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .cv-link-input button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .cv-link-input button:hover {
+            background: #1d4ed8;
+        }
+
+        .cv-icon {
+            font-size: 1.2rem;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin: 0 auto;
+            width: min(1180px, 94%);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px 16px;
+            padding: 14px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            box-shadow: 0 14px 35px rgba(37, 99, 235, 0.1);
+            backdrop-filter: blur(12px);
+        }
+
+        nav a {
+            color: #1a3a52;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.86rem;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            position: relative;
+            padding: 8px 2px;
+            transition: color 0.25s ease;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #2563eb, #f97316);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        section {
+            width: min(1100px, 92%);
+            margin: 34px auto;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: clamp(24px, 4vw, 46px);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: riseIn 0.55s ease both;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6, #f97316);
+        }
+
+        section:hover {
+            transform: translateY(-4px);
+            transition: transform 0.25s ease;
+        }
+
+        .project-card {
+            margin: 22px 0;
+            padding: 22px;
+            border-radius: 18px;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            background: linear-gradient(135deg, #f0f6ff 0%, #f8fbfc 100%);
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.3), transparent);
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.15);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #1a3a52;
+            margin-bottom: 20px;
+            padding-bottom: 11px;
+            font-size: clamp(1.55rem, 3.2vw, 2.2rem);
+            border-bottom: 2px solid rgba(37, 99, 235, 0.3);
+            letter-spacing: 0.02em;
+        }
+
+        h3 {
+            color: #2563eb;
+            margin-top: 14px;
+            margin-bottom: 9px;
+            font-size: clamp(1.05rem, 2.2vw, 1.28rem);
+            font-weight: 800;
+        }
+
+        p {
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #1a3a52;
+        }
+
+        ul {
+            margin-left: 0;
+            list-style: none;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin: 10px 0;
+            color: var(--muted);
+        }
+
+        ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.68em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #f97316);
+            transform: translateY(-50%);
+        }
+
+        .doc-btn,
+        #contact a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.84rem;
+            letter-spacing: 0.05em;
+            font-weight: 800;
+            text-transform: uppercase;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, color 0.22s ease;
+        }
+
+        .doc-btn {
+            color: #f5fcff;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border: 1px solid rgba(37, 99, 235, 0.5);
+        }
+
+        .doc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 18px rgba(37, 99, 235, 0.3);
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+        }
+
+        #contact {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+            border-color: rgba(37, 99, 235, 0.15);
+        }
+
+        #contact h2 {
+            border-bottom-color: rgba(37, 99, 235, 0.3);
+            color: #1a3a52;
+        }
+
+        #contact p {
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        #contact .contact-links {
+            margin-top: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        #contact a {
+            color: #f5fcff;
+            border: 1px solid rgba(37, 99, 235, 0.5);
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+
+        #contact a:hover {
+            color: #f5fcff;
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            box-shadow: 0 10px 18px rgba(37, 99, 235, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .social-icon {
+            font-size: 1.05rem;
+        }
+
+        footer {
+            width: min(1100px, 92%);
+            margin: 40px auto 48px;
+            text-align: center;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+            border-radius: 16px;
+            padding: 18px 16px;
+            box-shadow: 0 12px 26px rgba(37, 99, 235, 0.08);
+            backdrop-filter: blur(8px);
+        }
+
+        footer p {
+            color: #1a3a52;
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+
+        /* Unique Creative Enhancements */
+        section {
+            position: relative;
+        }
+
+        section::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background: radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.04), transparent 70%);
+            pointer-events: none;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.05), transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Smooth scroll behavior */
+        @supports (scroll-behavior: smooth) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
+
+        /* Enhanced gradient text animations */
+        h2 {
+            transition: color 0.4s ease;
+        }
+
+        h2:hover {
+            color: #3b82f6;
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 72px 14px 56px;
+            }
+
+            .cv-download-btn,
+            .cv-link-btn {
+                padding: 12px 20px;
+                font-size: 0.78rem;
+                margin: 8px 4px;
+            }
+
+            .cv-link-input {
+                max-width: 90%;
+                margin-top: 14px;
+            }
+
+            .cv-link-input input {
+                font-size: 0.85rem;
+            }
+
+            nav {
+                border-radius: 18px;
+                width: 95%;
+                top: 8px;
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                scrollbar-width: thin;
+            }
+
+            nav a {
+                flex: 0 0 auto;
+                font-size: 0.78rem;
+            }
+
+            section {
+                width: 94%;
+                margin: 22px auto;
+            }
+
+            .doc-btn,
+            #contact a {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Himanshu Joshi</h1>
+        <p>DevOps Engineer | AWS | Docker | Kubernetes | Jenkins | Terraform</p>
+        <div class="cv-container">
+            <button class="cv-download-btn" onclick="window.open('https://drive.google.com/file/d/1EaNKvcraLOS6K5pgzEYhHZYDmOPOF6eS/view?usp=sharing')">
+                Download Resume
+            </button>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+           Aspiring DevOps Engineer with experience in Docker, Flask, AWS, and MongoDB. Skilled in containerization, CI/CD pipelines, and version control, with strong presentation, leadership, and teamwork abilities
+focused on building scalable and efficient systems.
+
+        </p>
+    </section>
+
+    <section id="experience">
+        <h2>Work Experience</h2>
+        <h3>Web Development Intern - SparrowSoftTech</h3>
+        <p>Mar 2021 &ndash; Apr 2021</p>
+        <ul>
+            <li>Customized website template using HTML, CSS, and PHP</li>
+            <li>Integrated MySQL database with PHP</li>
+            <li>Enhanced UI with gallery, menus, and contact section</li>
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+
+        <div class="project-card">
+            <h3>AWS-Based Full-Stack Application Deployment</h3>
+            <p>Deployed a full-stack web application with Flask backend and Express.js frontend on AWS EC2 instances</p>
+            <p>Configured Application Load Balancer for traffic distribution and high availability, and utilized AWS services for scalable and reliable hosting. infrastructure.</p>
+        </div>
+
+        <div class="project-card">
+            <h3>Containerized Flask Web Application with MongoDB</h3>
+            <p>Developed secure Flask app integrated with MongoDB Atlas and Dockerized deployment.</p>
+            <a href="https://1drv.ms/w/c/d3ff4fceec86fe87/IQDhyjkqOtPPSbcuKyJcHUnfATVG8TDp468POiiGuG2vTDQ?e=1BhEqy" class="doc-btn">&#128196; Documentation</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Kubernetes Deployment of Full-Stack Application</h3>
+            <p>Deployed an Express.js frontend and Flask backend on a local Kubernetes cluster using Minikube.</p>
+            <a href="https://1drv.ms/w/c/d3ff4fceec86fe87/IQBALGypFtfEQaT1u4Ogcw6QAeBXey1w7fipeeGoYO-H-C8?e=VZup0o" class="doc-btn">&#128196; Documentation</a>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <p><strong>B.Tech IT</strong> - Gyanmanjari Innovative University (CGPA: 7.2)</p>
+        <p><strong>Diploma IT</strong> - Sir Bhavsinhji Polytechnic Institute (CGPA: 8.85)</p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <p><strong>Technical:</strong>  Python, Js, Flask, MongoDB atlas, Docker, AWS, Jenkins, Kubernetes, Terraform,
+Nginx, Git-GitHub, Linux
+</p>
+        <p><strong>Soft Skills:</strong> Communication, Presentation, Teamwork, Leadership</p>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>DevOps - Tutedude</li>
+            <li>Cloud Computing with AWS - Tutedude</li>
+            <li>DSA with Python - Tutedude</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Let's connect! Reach out through any of these channels.</p>
+        <div class="contact-links">
+            <a >joshihimanshu0717@gmail.com</a>
+            
+            <a>
+              6353087464  
+            </a>
+            <a href="https://github.com/JoshiHimanshu-07" target="_blank">
+                <span class="social-icon">&#128187;</span>
+                GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/himanshu-joshi-406232304/" target="_blank">
+                <span class="social-icon">&#128188;</span>
+                LinkedIn
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Himanshu Joshi | DevOps Portfolio</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        // PDF Download Function
+        function downloadCVPDF() {
+            const cvContent = document.createElement('div');
+            cvContent.style.padding = '40px';
+            cvContent.style.fontFamily = 'Arial, sans-serif';
+            cvContent.style.lineHeight = '1.8';
+            cvContent.innerHTML = `
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h1 style="margin: 0; font-size: 28px; color: #1a3a52;">HIMANSHU JOSHI</h1>
+                    <p style="margin: 8px 0 0 0; font-size: 14px; color: #5a7a94;">DevOps Engineer | AWS | Docker | Kubernetes | Jenkins | Terraform</p>
+                    <p style="margin: 12px 0 0 0; font-size: 12px; color: #5a7a94;">
+                        Email: joshihimanshu0717@gmail.com | Phone: 6353087464
+                    </p>
+                </div>
+
+                <h2 style="border-bottom: 2px solid #2563eb; padding-bottom: 8px; color: #1a3a52; font-size: 16px; margin-top: 24px;">PROFESSIONAL SUMMARY</h2>
+                <p style="color: #5a7a94; margin: 12px 0;">
+                    Aspiring DevOps Engineer with experience in Docker, Flask, AWS, and MongoDB. Skilled in containerization, CI/CD pipelines, and version control, with strong presentation, leadership, and teamwork abilities focused on building scalable and efficient systems.
+                </p>
+
+                <h2 style="border-bottom: 2px solid #2563eb; padding-bottom: 8px; color: #1a3a52; font-size: 16px; margin-top: 24px;">WORK EXPERIENCE</h2>
+                <h3 style="color: #2563eb; margin: 12px 0 4px 0; font-size: 14px;">Web Development Intern - SparrowSoftTech</h3>
+                <p style="color: #5a7a94; margin: 0 0 8px 0; font-size: 12px;">Mar 2021 – Apr 2021</p>
+                <ul style="color: #5a7a94; margin: 8px 0 0 20px; padding: 0;">
+                    <li>Customized website template using HTML, CSS, and PHP</li>
+                    <li>Integrated MySQL database with PHP</li>
+                    <li>Enhanced UI with gallery, menus, and contact section</li>
+                </ul>
+
+                <h2 style="border-bottom: 2px solid #2563eb; padding-bottom: 8px; color: #1a3a52; font-size: 16px; margin-top: 24px;">PROJECTS</h2>
+                
+                <h3 style="color: #2563eb; margin: 12px 0 4px 0; font-size: 14px;">AWS-Based Full-Stack Application Deployment</h3>
+                <p style="color: #5a7a94; margin: 0;">Deployed full-stack web application with Flask backend and Express.js frontend on AWS EC2 instances. Configured Application Load Balancer for traffic distribution and high availability.</p>
+
+                <h3 style="color: #2563eb; margin: 12px 0 4px 0; font-size: 14px;">Containerized Flask Web Application with MongoDB</h3>
+                <p style="color: #5a7a94; margin: 0;">Developed secure Flask app integrated with MongoDB Atlas and Dockerized deployment.</p>
+
+                <h3 style="color: #2563eb; margin: 12px 0 4px 0; font-size: 14px;">Kubernetes Deployment of Full-Stack Application</h3>
+                <p style="color: #5a7a94; margin: 0;">Deployed Express.js frontend and Flask backend on local Kubernetes cluster using Minikube.</p>
+
+                <h2 style="border-bottom: 2px solid #2563eb; padding-bottom: 8px; color: #1a3a52; font-size: 16px; margin-top: 24px;">EDUCATION</h2>
+                <p style="color: #5a7a94; margin: 8px 0;"><strong style="color: #1a3a52;">B.Tech IT</strong> - Gyanmanjari Innovative University (CGPA: 7.2)</p>
+                <p style="color: #5a7a94; margin: 8px 0;"><strong style="color: #1a3a52;">Diploma IT</strong> - Sir Bhavsinhji Polytechnic Institute (CGPA: 8.85)</p>
+
+                <h2 style="border-bottom: 2px solid #2563eb; padding-bottom: 8px; color: #1a3a52; font-size: 16px; margin-top: 24px;">TECHNICAL SKILLS</h2>
+                <p style="color: #5a7a94; margin: 8px 0;"><strong style="color: #1a3a52;">Languages & Frameworks:</strong> Python, JavaScript, Flask, Node.js/Express.js</p>
+                <p style="color: #5a7a94; margin: 8px 0;"><strong style="color: #1a3a52;">Cloud & DevOps:</strong> AWS (EC2, S3, CloudWatch), Docker, Kubernetes, Jenkins, Terraform, Nginx</p>
+                <p style="color: #5a7a94; margin: 8px 0;"><strong style="color: #1a3a52;">Databases:</strong> MongoDB, MySQL, MongoDB Atlas</p>
+                <p style="color: #5a7a94; margin: 8px 0;"><strong style="color: #1a3a52;">Other Tools:</strong> Git/GitHub, Linux, CI/CD Pipelines</p>
+
+                <h2 style="border-bottom: 2px solid #2563eb; padding-bottom: 8px; color: #1a3a52; font-size: 16px; margin-top: 24px;">SOFT SKILLS</h2>
+                <p style="color: #5a7a94; margin: 8px 0;">Communication, Presentation, Teamwork, Leadership</p>
+
+                <h2 style="border-bottom: 2px solid #2563eb; padding-bottom: 8px; color: #1a3a52; font-size: 16px; margin-top: 24px;">CERTIFICATIONS</h2>
+                <ul style="color: #5a7a94; margin: 8px 0 0 20px; padding: 0;">
+                    <li>DevOps - Tutedude</li>
+                    <li>Cloud Computing with AWS - Tutedude</li>
+                    <li>DSA with Python - Tutedude</li>
+                </ul>
+            `;
+
+            const options = {
+                margin: 10,
+                filename: 'Himanshu_Joshi_CV.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+            };
+
+            html2pdf().set(options).from(cvContent).save();
+        }
+
+        // Toggle CV Link Input
+        function toggleCVLink() {
+            const input = document.getElementById('cvLinkInput');
+            input.style.display = input.style.display === 'none' ? 'block' : 'none';
+            if (input.style.display === 'block') {
+                document.getElementById('cvUrl').focus();
+            }
+        }
+
+        // Save and Open CV Link
+        function saveCVLink() {
+            const cvUrl = document.getElementById('cvUrl').value.trim();
+            if (!cvUrl) {
+                alert('Please enter a valid CV link');
+                return;
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('cvLink', cvUrl);
+            
+            // Open in new tab
+            window.open(cvUrl, '_blank');
+            
+            // Show confirmation
+            alert('CV link saved successfully!');
+        }
+
+        // Load CV link on page load
+        window.addEventListener('load', function() {
+            const savedCVLink = localStorage.getItem('cvLink');
+            if (savedCVLink) {
+                document.getElementById('cvUrl').value = savedCVLink;
+            }
+        });
+
+        // Allow Enter key to save CV link
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && document.getElementById('cvUrl') === document.activeElement) {
+                saveCVLink();
+            }
+        });
+    </script>
+
+</body>
+</html>
